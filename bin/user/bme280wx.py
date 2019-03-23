@@ -43,16 +43,16 @@ class Bme280wx(StdService):
       self.default_units = self.bme280_dict.get('usUnits', 'US').upper()
       self.default_units = weewx.units.unit_constants[self.default_units]
 
-      self.temperatureKey = self.bme280_dict.get('temperatureKey', 'inTemp')
+      self.temperatureKeys = surely_a_list(self.bme280_dict.get('temperatureKeys', 'inTemp'))
       self.temperature_must_have = surely_a_list(self.bme280_dict.get('temperature_must_have', []))
 
       # The conversion from station pressure to MSL barometric pressure depends on the
       # temperature. So, the default is to only provide the pressure value when there
       # is already an outdoor temperature value
-      self.presssureKey = self.bme280_dict.get('presssureKey', 'pressure')
+      self.pressureKeys = surely_a_list(self.bme280_dict.get('pressureKeys', 'pressure'))
       self.pressure_must_have = surely_a_list(self.bme280_dict.get('pressure_must_have', ['outTemp']))
 
-      self.humidityKey = self.bme280_dict.get('humidityKey', 'inHumidity')
+      self.humidityKeys = surely_a_list(self.bme280_dict.get('humidityKeys', 'inHumidity'))
       self.humidity_must_have = surely_a_list(self.bme280_dict.get('humidity_must_have', []))
       
       self.bus = smbus2.SMBus(self.port)
@@ -89,14 +89,19 @@ class Bme280wx(StdService):
         if all(must_have in packet for must_have in self.pressure_must_have):
             pressurePA = (bme280data.pressure, 'mbar', 'group_pressure')
             converted = converter.convert(pressurePA)
-            packet[self.presssureKey] = converted[0]
+            for key in self.pressureKeys:
+                packet[key] = converted[0]
 
         if all(must_have in packet for must_have in self.temperature_must_have):
             temperatureC = (bme280data.temperature, 'degree_C', 'group_temperature')
             converted = converter.convert(temperatureC)
-            packet[self.temperatureKey] = converted[0]
+            for key in self.temperatureKeys:
+                packet[key] = converted[0]
 
         if all(must_have in packet for must_have in self.humidity_must_have):
             humidityPCT = (bme280data.humidity, 'percent', 'group_percent')
             converted = converter.convert(humidityPCT)
-            packet[self.humidityKey] = converted[0]
+            for key in self.humidityKeys:
+                packet[key] = converted[0]
+
+        logdbg(packet)
