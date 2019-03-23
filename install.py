@@ -18,11 +18,12 @@ class Bme280wxInstaller(ExtensionInstaller):
                 'Bme280wx': {
                     'i2c_port': '1',
                     'i2c_address': '0x76',
-                    'temperature': 'inTemp',
+                    'usUnits': 'US',
+                    'temperatureKey': 'inTemp',
                     'temperature_must_have': '',
-                    'pressure': 'pressure',
+                    'pressureKey': 'pressure',
                     'pressure_must_have': 'outTemp',
-                    'humidity': 'inHumidity',
+                    'humidityKey': 'inHumidity',
                     'humidity_must_have': ''
                 }
             },
