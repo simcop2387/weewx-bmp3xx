@@ -53,6 +53,13 @@ Restart weewx using these steps or your favorite local variant:
 sudo /etc/init.d/weewx stop
 sudo /etc/init.d/weewx start
 ```
+## Upgrade
+If you want to upgrade to a newer version of this extension,
+simply uninstall the old version and install the new version, as noted above.
+However, during the uninstall, the extension manager will remove the configuration settings (described in the next section).
+If you have modified any of them, make a note of them before the uninstall.
+(One easy way to do that is to simply rename the `[Bme280wx]` section to something else.
+That will prevent the extension manager from removing the whole section.)
 
 ## Configuration
 Installation will add a default configuration to `/etc/weewx/weewx.conf`:

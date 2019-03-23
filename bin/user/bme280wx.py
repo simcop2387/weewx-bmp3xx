@@ -61,7 +61,7 @@ class Bme280wx(StdService):
       self.calibration_params = bme280.load_calibration_params(self.bus, self.address)
 
       loginf('I2C port: %s' % self.port)
-      loginf('I2C address: %s' % self.address)
+      loginf('I2C address: %s' % hex(self.address))
       loginf('fallback default units: %s' % weewx.units.unit_nicknames[self.default_units])
 
       # This is last to make sure all the other stuff is ready to go
