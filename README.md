@@ -11,6 +11,15 @@ The extension assumes a Raspberry Pi environment, though it should be possible t
 This extension always uses the I2C interface to read from the BME280 sensor.
 Some BME280 sensor breakout boards also provide an SPI interface.
 
+This interface seems to work correctly for a BMP280 as well,
+if you happen to have one laying around. The humidity reading will be zero.
+The other readings looked right to me,
+but I didn't investigate whether they really were mathematically correct or just close enough.
+It does _not_ work with BMP085.
+The values are way off the mark.
+It might be possible to tweak the conversions somehow, but I didn't explore it.
+If you are using a BMP085, do yourself a favor and get a BME280.
+
 ## Installation
 ### Pre-requisites
 * [weewx](https://weewx.com). Should work with any recent version. Tested with weewx 3.9.1.
