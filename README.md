@@ -22,11 +22,13 @@ If you are using a BMP085, do yourself a favor and get a BME280.
 
 ## Installation
 ### Pre-requisites
-* [weewx](https://weewx.com). Should work with any recent version. Tested with weewx 3.9.1.
-* python 2.7 or later (but not python 3.x). You will already have a suitable python version if you are running weewx.
+* [weewx](https://weewx.com). Should work with any recent version. Tested with weewx 3.9.1 and 4.1.0.
+* python 2.7 or python 3.x. You will already have a suitable python version if you are running weewx.
 * [RPi.bme280](https://pypi.org/project/RPi.bme280/) python interface to the BME280 for a Raspberry Pi.
   The page at that link is also a great guide for wiring up your sensor if that's a new area for you.
   There are several other python libraries for the BME280, but they are not interchangable.
+* NOTE: If you are running weewx inside a Docker container, you must expose your I2C device 
+  (`/dev/i2c-0` or `/dev/i2c-1`) to that container.
 
 Download the compressed archive https://gitlab.com/wjcarpenter/bme280wx/-/archive/master/bme280wx-master.zip of this project to any convenient temporary directory.
 
