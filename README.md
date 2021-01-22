@@ -1,11 +1,12 @@
+# [bmp3xx](https://gitlab.com/simcop2387/weewx-bmp3xx)
 _Copyright (c) 2021, Ryan Voots
 _[This project is licensed under the BSD 2-clause "Simplified" License.](https://gitlab.com/wjcarpenter/bme280wx/blob/master/LICENSE)_
 
 Based on the original project bme280wx from WJCarpenter, changed for the bmp3xx family of sensors
 
-# [bme280wx](https://gitlab.com/wjcarpenter/bme280wx)
 _Copyright (c) 2019, WJCarpenter_
 _[This project is licensed under the BSD 2-clause "Simplified" License.](https://gitlab.com/wjcarpenter/bme280wx/blob/master/LICENSE)_
+[bme280wx](https://gitlab.com/wjcarpenter/bme280wx)
 
 bmp3xx is an extension to [weewx weather station software](https://weewx.com).
 It gives the ability to suplement existing station readings with temperature,
