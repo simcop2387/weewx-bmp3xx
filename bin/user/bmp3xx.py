@@ -78,13 +78,13 @@ class Bmp3xx(StdService):
 
         packet = event.packet
 
+        loginf('loop packet')
+
         # the sample method will take a single reading and return a
         # compensated_reading object
         bmp_pressure = self.bmp.pressure
         bmp_temperature = self.bmp.temperature
 
-        if bmp3xxdata is None:
-            return
         # If there is a declared set of units already, we'll convert to that.
         # If there isn't, we'll accept the configured wisdom.
         if 'usUnits' in packet:

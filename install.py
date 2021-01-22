@@ -24,8 +24,6 @@ class Bmp3xxInstaller(ExtensionInstaller):
                     'temperature_must_have': '',
                     'pressureKeys': 'pressure',
                     'pressure_must_have': 'outTemp',
-                    'humidityKeys': 'inHumidity',
-                    'humidity_must_have': ''
                 }
             },
             files=[('bin/user', ['bin/user/bmp3xx.py'])]
