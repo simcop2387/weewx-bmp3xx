@@ -1,21 +1,22 @@
-# installer for bme280wx extension
+# installer for bmp3xx extension
+# Based on the Bme280wx extension by WJCarpenter
 
 from setup import ExtensionInstaller
 
 def loader():
-    return Bme280wxInstaller()
+    return Bmp3xxInstaller()
 
-class Bme280wxInstaller(ExtensionInstaller):
+class Bmp3xxInstaller(ExtensionInstaller):
     def __init__(self):
-        super(Bme280wxInstaller, self).__init__(
+        super(Bmp3xxInstaller, self).__init__(
             version="1.0",
-            name='bme280wx',
-            description='Add bme280 sensor readings to loop packet data',
-            author="WJCarpenter",
-            author_email="bill-bme280wx@carpenter.org",
-            data_services='user.bme280wx.Bme280wx',
+            name='bmp3xx',
+            description='Add bmp3xx sensor readings to loop packet data',
+            author="Simcop2387",
+            author_email="simcop2387@simcop2387.info",
+            data_services='user.bmp3xx.Bmp3xx',
             config={
-                'Bme280wx': {
+                'Bmp3xx': {
                     'i2c_port': '1',
                     'i2c_address': '0x76',
                     'usUnits': 'US',
@@ -27,5 +28,5 @@ class Bme280wxInstaller(ExtensionInstaller):
                     'humidity_must_have': ''
                 }
             },
-            files=[('bin/user', ['bin/user/bme280wx.py'])]
+            files=[('bin/user', ['bin/user/bmp3xx.py'])]
             )
