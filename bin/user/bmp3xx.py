@@ -6,22 +6,12 @@ import time
 import busio
 import board
 import adafruit_bmp3xx
-import syslog
 import weewx
 from weewx.engine import StdService
 import weeutil
+import weeutil.logger
 
-def logmsg(level, msg):
-    syslog.syslog(level, 'bmp3xx: %s' % msg)
-
-def logdbg(msg):
-    logmsg(syslog.LOG_DEBUG, msg)
-
-def loginf(msg):
-    logmsg(syslog.LOG_INFO, msg)
-
-def logerr(msg):
-    logmsg(syslog.LOG_ERR, msg)
+log = logging.getLogger(__name__)
 
 def surely_a_list(innie):
     if isinstance(innie, list):
@@ -37,7 +27,7 @@ class Bmp3xx(StdService):
       # Initialize my superclass first:
       super(Bmp3xx, self).__init__(engine, config_dict)
       self.bmp3xx_dict = config_dict.get('Bmp3xx', {})
-      loginf('bmp3xxwx configuration %s' % self.bmp3xx_dict)
+      log.info('bmp3xxwx configuration %s' % self.bmp3xx_dict)
 
       # TODO figure out how to sanely take these for the busio library
 #      self.port = int(self.bmp3xx_dict.get('i2c_port', '1'))
@@ -67,8 +57,8 @@ class Bmp3xx(StdService):
 #      bmp.temperature_oversampling = 2
 
 #      loginf('I2C port: %s' % self.port)
-      loginf('I2C address: %s' % hex(self.address))
-      loginf('fallback default units: %s' % weewx.units.unit_nicknames[self.default_units])
+      log.info('I2C address: %s' % hex(self.address))
+      log.info('fallback default units: %s' % weewx.units.unit_nicknames[self.default_units])
 
       # This is last to make sure all the other stuff is ready to go
       # (avoid race condition)
@@ -78,7 +68,7 @@ class Bmp3xx(StdService):
 
         packet = event.packet
 
-        loginf('loop packet')
+        log.debug('loop packet')
 
         # the sample method will take a single reading and return a
         # compensated_reading object
@@ -104,4 +94,4 @@ class Bmp3xx(StdService):
             for key in self.temperatureKeys:
                 packet[key] = converted[0]
 
-        logdbg(packet)
+        log.debug(packet)
