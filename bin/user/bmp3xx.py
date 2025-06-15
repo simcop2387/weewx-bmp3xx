@@ -10,13 +10,15 @@ import weewx
 from weewx.engine import StdService
 import weeutil
 import weeutil.logger
+import logging
 
+weeutil.logger.setup(__name__)
 log = logging.getLogger(__name__)
 
 def surely_a_list(innie):
     if isinstance(innie, list):
         return innie
-    if innie is None or innie is "":
+    if innie is None or innie == "":
         return []
     return [innie] # cross fingers
 
